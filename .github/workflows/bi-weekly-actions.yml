@@ -7,29 +7,22 @@ on:
 env:
   FIRST_RUN_DATE: 2023-12-17
 jobs:
-  set_variables:
+  set_weekdiff:
     runs-on: ubuntu-latest
     outputs:
-      iterator_bandwidth: ${{ steps.iterator_bandwidth.outputs.iterator_bandwidth }}
-      iterator_storage: ${{ steps.iterator_storage.outputs.iterator_storage }}
+      weekdiff: ${{ steps.weekdiff.outputs.weekdiff }}
     steps:
-      - name: Iterator for bandwidth
-        id: iterator_bandwidth
+      - name: Calculate weekdiff
+        id: weekdiff
         run: |
           iterator_bandwidth=$(node -e "console.log(JSON.stringify([...Array(${{ github.event.inputs.bandwidth_times }}).keys()]))")
           echo $iterator_bandwidth
           echo "iterator_bandwidth=$iterator_bandwidth" >> "$GITHUB_OUTPUT"
-      - name: Iterator for storage
-        id: iterator_storage
-        run: |
-          iterator_storage=$(node -e "console.log(JSON.stringify([...Array(${{ github.event.inputs.storage_times }}).keys()]))")
-          echo $iterator_storage
-          echo "iterator_storage=$iterator_storage" >> "$GITHUB_OUTPUT"
   storage:
     if: ${{ needs.set_variables.outputs.iterator_storage != '[]' && needs.set_variables.outputs.iterator_storage != '' }}  
     runs-on: ubuntu-latest
     needs:
-      - set_variables   
+      - set_weekdiff   
     strategy:
       max-parallel: 1 
       matrix:
