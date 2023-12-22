@@ -1,8 +1,8 @@
 name: bi-weekly-actions
 run-name: bi-weekly-actions
 on:
-  #schedule:
-  #  - cron: '0 4 * * 1'
+  schedule:
+    - cron: '0 4 * * 1'
   workflow_dispatch:
 env:
   FIRST_RUN_DATE: 2023-12-17
@@ -26,4 +26,4 @@ jobs:
     needs:
       - set_weekdiff
     steps:
-    - run: echo "This action will run every other week"
+    - run: echo "The bi-weekly action is running!"
