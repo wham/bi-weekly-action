@@ -6,7 +6,9 @@ on:
     - cron: '0 4 * * 1'
   workflow_dispatch:
 env:
-  # The cron has to be set to run on the same weekday as this date. 12/18 is Monday, so the cron is set to run on Monday.
+  # The date of the first run of the action. It has to be set to a date that is on the same weekday as the cron.
+  # 12/18 is Monday, so the cron is set to run on Monday.
+  # Every second week of the bi-weekly cycle, the action is going to be skipped.
   FIRST_RUN_DATE: 2023-12-18
 jobs:
   set_weekdiff:
