@@ -2,9 +2,10 @@ name: bi-weekly-actions
 run-name: bi-weekly-actions
 on:
   schedule:
-    - cron: '0 4 * * 1'
+    - cron: '0 4 * * 0'
   workflow_dispatch:
 env:
+  # The cron has to be set to run on the same weekday as this date. 12/17 is Sunday, so the cron is set to run on Sunday.
   FIRST_RUN_DATE: 2023-12-17
 jobs:
   set_weekdiff:
@@ -29,7 +30,7 @@ jobs:
             echo "🔴 It's the second week of the bi-weekly cycle. The action is going to be skipped." >> $GITHUB_STEP_SUMMARY
           fi
   action:
-    if: ${{ needs.set_weekdiff.outputs.weekdiff != 0 }}  
+    if: ${{ needs.set_weekdiff.outputs.weekdiff == 0 }}  
     runs-on: ubuntu-latest
     needs:
       - set_weekdiff
