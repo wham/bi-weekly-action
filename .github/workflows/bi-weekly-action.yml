@@ -1,12 +1,13 @@
-name: bi-weekly-actions
-run-name: bi-weekly-actions
+name: bi-weekly-action
+run-name: bi-weekly-action
 on:
   schedule:
-    - cron: '0 4 * * 0'
+    # At 04:00 on Monday
+    - cron: '0 4 * * 1'
   workflow_dispatch:
 env:
-  # The cron has to be set to run on the same weekday as this date. 12/17 is Sunday, so the cron is set to run on Sunday.
-  FIRST_RUN_DATE: 2023-12-17
+  # The cron has to be set to run on the same weekday as this date. 12/18 is Monday, so the cron is set to run on Monday.
+  FIRST_RUN_DATE: 2023-12-18
 jobs:
   set_weekdiff:
     runs-on: ubuntu-latest
@@ -35,4 +36,4 @@ jobs:
     needs:
       - set_weekdiff
     steps:
-    - run: echo "The bi-weekly action is running!"
+    - run: echo "🟢 The bi-weekly action is running!"
