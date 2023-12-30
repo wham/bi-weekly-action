@@ -35,6 +35,7 @@ jobs:
           else
             echo "🔴 It's the second week of the bi-weekly cycle. The action is going to be skipped." >> $GITHUB_STEP_SUMMARY
           fi
+  # Replace with your real job name and steps
   action:
     if: ${{ needs.weekindex.outputs.weekindex == 0 }}  
     runs-on: ubuntu-latest
