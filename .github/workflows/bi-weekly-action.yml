@@ -41,4 +41,4 @@ jobs:
     needs:
       - weekindex
     steps:
-    - run: echo "🟢 The bi-weekly action is running!"
+      - run: echo "🟢 The bi-weekly action is running!"
