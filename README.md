@@ -1,1 +1,1 @@
-# bi-weekly-actions
+A source code repository for article [Bi-Weekly GitHub Actions](https://medium.com/@VeselyCodes/bi-weekly-github-actions-7bea6be7bd96). See [bi-weekly-action.yml](https://github.com/wham/bi-weekly-action/blob/main/.github/workflows/bi-weekly-action.yml) for the final solution.
